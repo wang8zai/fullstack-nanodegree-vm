@@ -1,6 +1,3 @@
-fullstack-nanodegree-vm
+ItemCatalog-fullstack-nanodegree-project3
 =============
 
-Common code for the Relational Databases and Full Stack Fundamentals courses
-
-test2
