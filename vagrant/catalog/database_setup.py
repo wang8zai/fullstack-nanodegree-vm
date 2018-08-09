@@ -78,7 +78,7 @@ class Owner(Base):
     __tablename__ = 'owner'
 
     id = Column(Integer, primary_key=True)
-    name = Column(String(250), nullable=False)
+    name = Column(String(250), unique=True, nullable=False)
     user_id = Column(Integer, ForeignKey('user.id'))
 
     @property
@@ -100,7 +100,7 @@ class Item(Base):
     """
     __tablename__ = 'item'
 
-    name = Column(String(80), nullable=False)
+    name = Column(String(80), unique=True, nullable=False)
     user_id = Column(Integer, ForeignKey('user.id'))
     id = Column(Integer, primary_key=True)
     description = Column(String(250))
@@ -119,7 +119,9 @@ class Item(Base):
             'id': self.id,
             'price': self.price,
             'rate': self.rate,
-            'created_date': self.created_date
+            'created_date': self.created_date,
+            'owner_id': self.owner_id,
+            'user_id': self.user_id
         }
 
 

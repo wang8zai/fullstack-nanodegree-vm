@@ -13,7 +13,7 @@ import json
 import random
 import string
 import requests
-
+import userhelper
 auth = HTTPBasicAuth()
 
 app = Flask(__name__)
@@ -37,7 +37,7 @@ def verify_password(username_or_token, password):
     # Try to see if it's a token first
     user_id = User.verify_auth_token(username_or_token)
     if user_id:
-        user = session.query(User).filter_by(id=user_id).one()
+        user = session.query(User).filter_by(id=user_id).one_or_none()
     else:
         user = session.query(User).filter_by(name=username_or_token).first()
         if not user or not user.verify_password(password):
@@ -173,9 +173,9 @@ def gconnect():
     login_session['provider'] = 'google'
 
     # see if user exists, if it doesn't make a new one
-    user_id = getUserID(data["email"])
+    user_id = userhelper.getUserID(data["email"], session)
     if not user_id:
-        user_id = createUser(login_session)
+        user_id = userhelper.createUser(login_session, session)
     login_session['user_id'] = user_id
 
     output = ''
@@ -284,9 +284,9 @@ def fbconnect():
     login_session['picture'] = data["data"]["url"]
 
     # see if user exists
-    user_id = getUserID(login_session['email'])
+    user_id = userhelper.getUserID(login_session['email'], session)
     if not user_id:
-        user_id = createUser(login_session)
+        user_id = userhelper.createUser(login_session, session)
     login_session['user_id'] = user_id
 
     output = ''
@@ -310,37 +310,11 @@ def fbdisconnect():
     facebook_id = login_session['facebook_id']
     # The access token must me included to successfully logout
     access_token = login_session['access_token']
-    url = 'https://graph.facebook.com/%s/permissions?'
-    'access_token=%s' % (facebook_id, access_token)
+    url = 'https://graph.facebook.com/%s/permissions?access_token=%s'\
+          % (facebook_id, access_token)
     h = httplib2.Http()
     result = h.request(url, 'DELETE')[1]
     return "you have been logged out"
-
-
-# User Helper Functions
-def createUser(login_session):
-    newUser = User(
-        name=login_session['username'],
-        email=login_session['email'],
-        picture=login_session['picture']
-    )
-    session.add(newUser)
-    session.commit()
-    user = session.query(User).filter_by(email=login_session['email']).one()
-    return user.id
-
-
-def getUserInfo(user_id):
-    user = session.query(User).filter_by(id=user_id).one()
-    return user
-
-
-def getUserID(email):
-    try:
-        user = session.query(User).filter_by(email=email).one()
-        return user.id
-    except Exception:
-        return None
 
 
 # Disconnect based on provider
@@ -449,7 +423,7 @@ def newOwner():
 # itemout: the items cannot be edited by that user.
 @app.route('/home/<int:owner_id>', methods=['GET', 'POST'])
 def showItem(owner_id):
-    owner = session.query(Owner).filter_by(id=owner_id).one()
+    owner = session.query(Owner).filter_by(id=owner_id).one_or_none()
     item = session.query(Item).filter_by(owner_id=owner.id).all()
     status = request.args.get('status', '')
     if request.method == 'GET':
@@ -574,7 +548,7 @@ def deleteItem(owner_id, item_id):
 @app.route('/home/<int:owner_id>/JSON')
 @auth.login_required
 def ItemsJSON(owner_id):
-    owner = session.query(Owner).filter_by(id=owner_id).one()
+    owner = session.query(Owner).filter_by(id=owner_id).one_or_none()
     item = session.query(Item).filter_by(owner_id=owner.id).all()
     return jsonify(Items=[i.serialize for i in item])
 
@@ -587,7 +561,7 @@ def ItemJSON(owner_name, item_name):
     item = session.query(Item)\
                   .join(Owner, Owner.id == Item.owner_id)\
                   .filter(Owner.name == owner_name, Item.name == item_name)\
-                  .one()
+                  .one_or_none()
     return jsonify(Items=item.serialize)
 
 
