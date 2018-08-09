@@ -10,35 +10,35 @@ develop an application that provides a list of items within a variety of categor
 Modern web applications perform a variety of functions and provide amazing features and utilities to their users; but deep down, it’s really all just creating, reading, updating and deleting data. In this project, you’ll combine your knowledge of building dynamic websites with persistent data storage to create a web application that provides a compelling service to your users.
 
 # Prerequisite
-## python2.7
+### python2.7
 pakage: Flask, Sqlalchemy
-## Vagrant Redis
+### Vagrant Redis
 
 # Installtion
-## intall vagrant machine
+### intall vagrant machine
 Download: https://www.vagrantup.com/downloads.html
-## install sqlalchemy
+### install sqlalchemy
 Download: https://www.sqlalchemy.org/download.html
-## install flask
+### install flask
 Download: https://pypi.org/project/Flask/1.0.2/
-## clone project
+### clone project
 git clone https://github.com/wang8zai/fullstack-nanodegree-vm
 
 # Run
-## Directionary
+### Directionary
 1. cd vagrant
-## Run virtual machine
+### Run virtual machine
 1. vagrant up
 2. vagrant ssh
 3. cd /vagrant
-## Directionary
+### Directionary
 1.  cd catalog
-## Init database
+### Init database
 1. Build database: python2 database_setup.py
 2. Insert data into database: python2 initdatabase.py
-## Init web
+### Init web
 1. python2 webserver.py
-## Init redis server
+### Init redis server
 1. open another vagrant machine.
 2. open another terminal.
 3. cd vagrant
@@ -46,7 +46,7 @@ git clone https://github.com/wang8zai/fullstack-nanodegree-vm
 5. vagrant ssh
 6. cd catalog
 7. redis-server
-## Visit web
+### Visit web
 1. visit in your brower. localhost:8000
 
 ## Test Instructions
@@ -62,13 +62,13 @@ git clone https://github.com/wang8zai/fullstack-nanodegree-vm
 3. user3  password3
 4. user4  password4
 5. user5  password5
-#### Catalog
+### Catalog
 1. literature
 2. sculpture
 3. drawing
 4. dance
 5. theatre
 6. painting
-#### Items 
+### Items 
 Relations and items pls see initdatabase.py
     
