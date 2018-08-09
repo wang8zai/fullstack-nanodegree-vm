@@ -17,30 +17,29 @@ git clone https://github.com/wang8zai/fullstack-nanodegree-vm
 
 # Run
 ## Directionary
-cd vagrant
+1. cd vagrant
 ## Run virtual machine
-vagrant up
-vagrant ssh
-cd /vagrant
+1. vagrant up
+2. vagrant ssh
+3. cd /vagrant
 ## Directionary
-cd catalog
+1.  cd catalog
 ## Init database
-Build database:
-python2 database_setup.py
-Insert data into database:
-python2 initdatabase.py
+1.Build database:
+2. python2 database_setup.py
+3. Insert data into database:
+4. python2 initdatabase.py
 ## Init web
-python2 webserver.py
+1. python2 webserver.py
 ## Init redis server
-open another vagrant machine:
-open another terminal.
-cd vagrant
-vagrant up
-vagrant ssh
-cd catalog
-redis-server
+1. open another vagrant machine:
+2. open another terminal.
+3. cd vagrant
+4. vagrant up
+5. vagrant ssh
+6. cd catalog
+7. redis-server
 ## Visit web
-visit in your brower.
-localhost:8000
+1. visit in your brower. localhost:8000
 
 
