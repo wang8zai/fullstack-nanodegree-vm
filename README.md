@@ -21,6 +21,8 @@ Download: https://www.vagrantup.com/downloads.html
 Download: https://www.sqlalchemy.org/download.html
 ### install flask
 Download: https://pypi.org/project/Flask/1.0.2/
+### install redis
+Download: https://pypi.org/project/redis/
 ### clone project
 git clone https://github.com/wang8zai/fullstack-nanodegree-vm
 
