@@ -1,0 +1,119 @@
+/*
+
+Your styles go here!
+
+Hint! You'll probably want to start by styling:
+  * <body>
+  * <article>
+  * <h1>
+  * <img>
+
+I've left some boilerplate below for you.
+
+*/
+@import url(http://weloveiconfonts.com/api/?family=zocial);
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.main {
+  width: 90vw;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+header {
+  max-width: 100%;
+  width: 100%;
+  border-bottom: 2px solid gray;
+}
+
+container {
+  max-width: 100%;
+}
+
+.main-image{
+  max-width: 800px;
+  width: 100%;
+}
+
+media {
+  max-width: 100%;
+  margin: auto;
+}
+
+picture {
+  max-width: 100%;
+  margin: auto;
+}
+
+footer {
+  width: 100%;
+  height: 100%;
+}
+
+a {
+  font-size: 2em;
+  max-width: 100%;
+  text-decoration: none;
+  padding: 0.2em;
+}
+
+.overlay:hover {
+  opacity: 0.7;
+}
+
+.sub-title {
+  font-size:0.8em;
+  padding: 0.7em;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+  padding: inherit;
+  margin: inherit;
+}
+
+.turtle-logo{
+  max-height:100px;
+  margin-top: 0px;
+  margin-bottom: auto;
+  margin-right: 10px;
+}
+
+.status{
+  font-size: 1.0em;
+}
+
+.color-block {
+  max-width: 120px;
+  height: 120px;
+}
+
+[class*="zocial-"]:before {
+  font-family: 'zocial', sans-serif;
+}
+
+@media(max-width:576px){
+  .main {
+    width: 100vw;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
