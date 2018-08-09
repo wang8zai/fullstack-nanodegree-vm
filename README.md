@@ -23,6 +23,7 @@ Download: https://www.sqlalchemy.org/download.html
 Download: https://pypi.org/project/Flask/1.0.2/
 ### install redis
 Download: https://pypi.org/project/redis/
+Or: sudo apt-get install redis-server
 ### clone project
 git clone https://github.com/wang8zai/fullstack-nanodegree-vm
 
