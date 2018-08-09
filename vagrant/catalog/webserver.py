@@ -339,7 +339,7 @@ def getUserID(email):
     try:
         user = session.query(User).filter_by(email=email).one()
         return user.id
-    except:
+    except Exception:
         return None
 
 
@@ -598,6 +598,7 @@ def ItemJSON(owner_name, item_name):
 def get_auth_token():
     token = g.user.generate_auth_token()
     return jsonify({'token': token.decode('ascii')})
+
 
 if __name__ == "__main__":
     app.secret_key = 'olaolaolaola'

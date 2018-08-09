@@ -8,8 +8,8 @@ from sqlalchemy import create_engine
 import random
 import string
 from passlib.apps import custom_app_context as pwd_context
-from itsdangerous import(TimedJSONWebSignatureSerializer as
-                         Serializer, BadSignature, SignatureExpired)
+from itsdangerous import (TimedJSONWebSignatureSerializer
+                          as Serializer, BadSignature, SignatureExpired)
 
 Base = declarative_base()
 secret_key = ''.join(random.choice(string.ascii_uppercase +
@@ -41,7 +41,7 @@ class User(Base):
 
     # generate token.
     def generate_auth_token(self, expiration=600):
-    	s = Serializer(secret_key, expires_in=expiration)
+        s = Serializer(secret_key, expires_in=expiration)
         return s.dumps({'id': self.id})
 
     # verify token.
